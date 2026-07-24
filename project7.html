@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Documentary Streaming UI Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    :root {
+        --navy: #0B2C6B;
+        --navy-mid: #1B5FAE;
+        --accent: #FDB913;
+        --text-primary: #16181D;
+        --text-secondary: #64707D;
+        --surface: #F6F7F9;
+        --border: #E6E9EE;
+        --radius: 12px;
+        --space-lg: 88px;
+        --space-md: 56px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-primary);
+        background: #fff;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    a { color: inherit; text-decoration: none; }
+
+    header {
+        border-bottom: 1px solid var(--border);
+        padding: 18px 0;
+        position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(6px);
+        z-index: 10;
+    }
+    header nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .back-link { font-size: 0.88rem; color: var(--text-secondary); transition: color 0.15s; }
+    .back-link:hover { color: var(--navy); }
+
+    .hero {
+        background: linear-gradient(150deg, var(--navy) 0%, var(--navy-mid) 100%);
+        color: #fff;
+        padding: 72px 0 60px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: radial-gradient(600px 300px at 85% 0%, rgba(253,185,19,0.14), transparent 70%);
+        pointer-events: none;
+    }
+    .hero-tag {
+        display: inline-block;
+        font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid rgba(253,185,19,0.4);
+        padding: 5px 12px; border-radius: 999px;
+        margin-bottom: 18px;
+    }
+    .hero h1 { font-size: 2.35rem; font-weight: 800; margin-bottom: 12px; line-height: 1.2; letter-spacing: -0.01em; max-width: 720px; }
+    .hero-subtitle { font-size: 1.02rem; color: #D6E1F5; margin-bottom: 36px; max-width: 600px; font-weight: 400; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 36px; border-top: 1px solid rgba(255,255,255,0.16); padding-top: 24px; }
+    .meta-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: #90A6D1; margin-bottom: 5px; font-weight: 600; }
+    .meta-value { font-size: 0.95rem; font-weight: 600; }
+
+    main.content { padding: var(--space-md) 0 40px; }
+    .section { margin-bottom: var(--space-lg); }
+    .section:last-of-type { margin-bottom: var(--space-md); }
+    .section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.01em; }
+    .text-content { font-size: 0.98rem; color: var(--text-secondary); max-width: 680px; }
+
+    .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 4px; }
+    .two-column h4 { font-size: 0.92rem; margin-bottom: 6px; font-weight: 700; }
+    .two-column p { font-size: 0.9rem; color: var(--text-secondary); }
+    @media (max-width: 700px) { .two-column { grid-template-columns: 1fr; gap: 24px; } }
+
+    .style-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .style-tag {
+        font-size: 0.78rem; font-weight: 500; color: var(--navy);
+        background: #EDF2FB; border: 1px solid #DCE6F7;
+        padding: 5px 12px; border-radius: 999px;
+    }
+
+    .swatch-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
+    .swatch { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 500; }
+    .swatch-chip { width: 44px; height: 44px; border-radius: 10px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    .media-frame { display: flex; justify-content: center; width: 100%; }
+    .media-frame img {
+        max-width: 100%; width: auto; height: auto; display: block;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px rgba(11,44,107,0.08);
+    }
+
+    .media-frame.placeholder {
+        width: 100%; aspect-ratio: 16 / 9;
+        background: var(--surface);
+        border: 1.5px dashed #CBD3DE;
+        border-radius: var(--radius);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .media-frame.featured.placeholder { aspect-ratio: 21 / 6; }
+    .placeholder-inner { text-align: center; color: #9AA5B3; padding: 20px; }
+    .placeholder-inner i { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .placeholder-inner span { font-size: 0.82rem; font-weight: 500; }
+
+    .ui-full-width { margin-bottom: 4px; }
+
+    .ui-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 26px; }
+    .ui-gallery-item { display: flex; flex-direction: column; gap: 12px; }
+    .ui-gallery-item .media-frame { transition: transform 0.2s ease, box-shadow 0.2s ease; border-radius: var(--radius); }
+    .ui-gallery-item:hover .media-frame { transform: translateY(-3px); }
+    .ui-gallery-item:hover .media-frame.placeholder { border-color: var(--navy-mid); }
+    .ui-gallery-caption { font-size: 0.86rem; color: var(--text-secondary); text-align: center; font-weight: 500; }
+
+    .project-links { display: flex; gap: 12px; }
+    .project-link {
+        display: inline-flex; align-items: center; gap: 9px;
+        padding: 12px 22px; border-radius: 9px;
+        background: var(--navy); color: #fff; font-size: 0.9rem; font-weight: 600;
+        transition: background 0.15s, transform 0.15s;
+    }
+    .project-link:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+    .case-nav { border-top: 1px solid var(--border); padding: 26px 0; background: var(--surface); }
+    .case-nav .container { display: flex; justify-content: space-between; }
+    .nav-button { font-size: 0.88rem; font-weight: 600; color: var(--navy); transition: opacity 0.15s; }
+    .nav-button:hover { opacity: 0.7; }
+
+    @media (max-width: 600px) {
+        .hero h1 { font-size: 1.7rem; }
+        .project-meta { gap: 22px; }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Projects</a>
+            <a href="works.html" class="back-link">← Back to Portfolio</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-tag">UI Sample</span>
+            <h1>Travel Documentary Streaming UI Design</h1>
+            <p class="hero-subtitle">A cinematic hero layout for a travel documentary streaming site — one full-bleed photography template reused across five episode destinations, from the Himalayas to Venice, each with its own headline, synopsis, and framed detail shot.</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">UI Designer</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Type</div>
+                    <div class="meta-value">Streaming / Media Website</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Tools</div>
+                    <div class="meta-value">Figma</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Year</div>
+                    <div class="meta-value">2026</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="content">
+        <div class="container">
+
+            <section class="section">
+                <h2 class="section-title">About This Piece</h2>
+                <p class="text-content">
+                    A full-bleed hero template for a travel documentary series site, restyled five times across different destinations. Each version keeps the same navigation ("Menu / For you / Inspiration"), red "Watch now" call to action, and a secondary framed detail photo — only the location photography, headline, and synopsis change, testing how far one layout can stretch across very different footage.
+                </p>
+                <div class="style-tags">
+                    <span class="style-tag">Streaming / Media</span>
+                    <span class="style-tag">Cinematic</span>
+                    <span class="style-tag">Full-Bleed Photography</span>
+                    <span class="style-tag">Desktop</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Foundations</h2>
+                <div class="two-column" style="margin-bottom: 32px;">
+                    <div>
+                        <h4>Color Palette</h4>
+                        <div class="swatch-row">
+                            <div class="swatch"><span class="swatch-chip" style="background:#101215"></span>Near-Black Overlay</div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#FFFFFF;border:1px solid #E2E5EA"></span>White Text</div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#E8352B"></span>Watch Now Red</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Typography</h4>
+                        <p>A light, generously-spaced sans-serif sits directly over full-bleed photography, with a dark gradient overlay ensuring the nav and headline stay legible regardless of which destination's imagery is behind it.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="ui-full-width">
+                    <div class="media-frame featured">
+                        <img src="assets/1-proj7.png" alt="Travel Documentary site, all five episode destination variants">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Screens</h2>
+                <div class="ui-gallery">
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/1-proj7.png" alt="Himalayas episode page"></div>
+                        <div class="ui-gallery-caption">Himalayas</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/2-proj7.png" alt="Mount Apo episode page"></div>
+                        <div class="ui-gallery-caption">Mount Apo</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/3-proj7.png" alt="Venice episode page"></div>
+                        <div class="ui-gallery-caption">Venice</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/4-proj7.png" alt="Hiking episode page"></div>
+                        <div class="ui-gallery-caption">Hiking</div>
+                    </div>
+                    <!-- Duplicate a .ui-gallery-item block for each additional screen -->
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Design Notes</h2>
+                <div class="two-column">
+                    <div>
+                        <h4>Color &amp; Typography</h4>
+                        <p>Red is used exactly once per screen — the "Watch now" button — so it always reads as the one action worth taking, regardless of how colorful or muted that episode's photography is.</p>
+                    </div>
+                    <div>
+                        <h4>Style Direction</h4>
+                        <p>The floating white-bordered inset photo adds a sense of depth and editorial polish against the full-bleed background, echoing a print travel-magazine layout more than a typical streaming grid.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="project-links">
+                    <a href="https://www.figma.com/proto/zw8Yr7Rqu8NxlC6jEzvfyW/Sample-Projects?node-id=197-945&t=jlhUAVTlcxpPydbH-1&scaling=min-zoom&content-scaling=fixed&page-id=197%3A925&starting-point-node-id=197%3A945" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-figma"></i> View in Figma
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <section class="case-nav">
+        <div class="container">
+            <a href="works.html" class="nav-button">← All Projects</a>
+            <a href="project8.html" class="nav-button">Next Project →</a>
+        </div>
+    </section>
+
+    <script>
+        document.querySelectorAll('.media-frame img').forEach(function (img) {
+            img.addEventListener('error', function () {
+                var frame = img.closest('.media-frame');
+                var label = img.getAttribute('alt') || 'Image';
+                frame.classList.add('placeholder');
+                frame.innerHTML = '<div class="placeholder-inner"><i class="fa-regular fa-image"></i><span>' + label + '</span></div>';
+            });
+        });
+    </script>
+</body>
+</html>

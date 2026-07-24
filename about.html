@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Cristina's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="about">
+    <nav class="navbar">
+        <div class="logo">
+            <div class="profile-picture">
+                <img src="xtina.JPG" alt="Cristina Velasco headshot">
+            </div>
+        </div>
+        <div class="nav-links">
+            <span class="nav-item"><a href="index.html">Home</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="works.html">Works</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="about.html" class="active">About</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="achievements.html">Achievements</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="contact.html">Contact</a></span>
+        </div>
+        <!-- <a href="https://www.dropbox.com/scl/fi/fl4iiu221aqe1qotkud0f/Velasco-Ma.-Cristina-Sajuyan_Resume.pdf?rlkey=7b1qg4cxi3xn4jj9p86d2en36&st=u09tqu9e&dl=0" class="download-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </a> -->
+        <button class="download-btn" onclick="forceDownload()">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </button>
+    </nav>
+
+    <div class="blog-content">
+        <h2>About Me</h2>
+        <p>Over time, I have explored various aspects of IT, from front-end development to system analysis and design. My experience with wireframing, UI/UX, and database integration has shaped my approach to creating intuitive and efficient systems. I enjoy
+            refining ideas into structured solutions and continuously improving my workflow. As I continue learning, I aim to consolidate my knowledge and contribute to projects that bridge functionality with great user experiences. In the future, I hope
+            to expand my expertise, possibly developing my own platform to share insights and innovations.</p>
+
+        <section id="skills" class="skills-section">
+            <h2>Skills</h2>
+            <div class="cells">
+                <div class="cell"><img src="html.png" alt="html logo"><span>HTML</span></div>
+                <div class="cell"><img src="css.png" alt="css logo"><span>CSS</span></div>
+                <div class="cell"><img src="figma.png" alt="figma logo"><span>Figma</span></div>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

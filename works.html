@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Cristina's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="works">
+    <nav class="navbar">
+        <div class="logo">
+            <div class="profile-picture">
+                <img src="assets/xtina.JPG" alt="Cristina Velasco headshot">
+            </div>
+        </div>
+        <div class="nav-links">
+            <span class="nav-item"><a href="index.html">Home</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="works.html" class="active">Works</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="about.html">About</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="achievements.html">Achievements</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="contact.html">Contact</a></span>
+        </div>
+        <button class="download-btn" onclick="forceDownload()">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </button>
+    </nav>
+
+    <div class="works-container">
+        <!-- 1. Header Section -->
+        <div class="works-header">
+            <h1 class="works-title">MY WORKS</h1>
+            <p class="works-subtitle">A collection of project case studies, system analyses, and UI designs.</p>
+        </div>
+        <!-- Compact Filter Bar sitting on top of cards -->
+        <div class="works-filter-bar">
+            <div class="filter-group">
+                <label for="year-filter">Year</label>
+                <select id="year-filter" class="filter-select">
+                    <option value="all">All Years</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="type-filter">Type</label>
+                <select id="type-filter" class="filter-select">
+                    <option value="all">All Types</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project Card 1 -->
+            <a href="project1.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/pagibig.jpg" alt="Virtual Pag-IBIG Redesign" class="card-img">
+                    <span class="category-badge">UI/UX Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Virtual Pag-IBIG Redesign: Fixing a Government Member Portal Used by Millions</h3>
+                    <p class="card-description">
+                        A UX audit and full redesign of Pag-IBIG Fund's website and app, uncovering 18 usability violations across 24 real screens and closing a critical account-parity gap between platforms.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                        <span class="tag-pill">FigJam</span>
+                        <span class="tag-pill">UX Research</span>
+                        <span class="tag-pill">Design System</span>
+                    </div>
+ 
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Case Study &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project2.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/travel-website.png" alt="Travel Website" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Travel Website</h3>
+                    <p class="card-description">
+                        A sample travel website design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project3.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/landing-proj3.png" alt="Travel Website" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Vehicle Website</h3>
+                    <p class="card-description">
+                        A sample vehicle website design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project4.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/landing-proj4.png" alt="Food Delivery App" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Food Delivery App</h3>
+                    <p class="card-description">
+                        A sample food delivery app design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project5.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/donut1-proj5.png" alt="Flavor-Themed Website" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Flavor-Themed Website</h3>
+                    <p class="card-description">
+                        A sample flavor-themed website design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project6.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/nike-proj6.png" alt="Nike Website" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Nike Website</h3>
+                    <p class="card-description">
+                        A sample Nike website design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project7.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/1-proj7.png" alt="Travel Documentary Streaming UI" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Travel Documentary Streaming UI Design</h3>
+                    <p class="card-description">
+                        A sample travel documentary streaming UI design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="project8.html" class="project-card">
+                <div class="card-image-wrapper">
+                    <img src="assets/soda1-proj8.png" alt="Travel Documentary Streaming UI" class="card-img">
+                    <span class="category-badge">UI Design</span>
+                </div>
+                
+                <div class="card-content">
+                    <h3 class="card-title">Travel Documentary Streaming UI Design</h3>
+                    <p class="card-description">
+                        A sample travel documentary streaming UI design with a focus on user experience and visual appeal.
+                    </p>
+                    
+                    <div class="card-tags">
+                        <span class="tag-pill">Figma</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="card-year">2026</span>
+                        <span class="view-case-study">View Design &rarr;</span>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Cards Container (Max 3 visible per row) -->
+        <div id="project-grid" class="project-grid">
+            <!-- Project cards injected via script.js -->
+        </div>
+
+        <p id="works-empty-state" class="works-empty-state hidden">
+            No projects match this filter yet — try a different year or type.
+        </p>
+    </div>
+
+    <!-- Project / Case Study Detail -->
+    <!--<div id="project-detail" class="project-detail hidden">
+        <div class="project-detail-content">
+            <button class="close-btn" onclick="closeProjectDetail()">&times;</button>
+            <div id="project-detail-body">
+             Project details will be populated here 
+            </div>
+        </div>
+    </div>
+
+     Lightbox for gallery images — plain click-to-enlarge, no auto-slide 
+    <div id="lightbox" class="lightbox hidden" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <img id="lightbox-img" src="" alt="">
+    </div>-->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

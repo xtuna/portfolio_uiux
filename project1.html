@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Pag-IBIG Redesign - Case Study</title>
+    
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           BASE STYLES & RESETS
+           ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sticky Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        /* Hero Banner */
+        .hero {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-value {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Section Layouts */
+        .content {
+            padding: 80px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            color: #34495e;
+        }
+
+        .text-content {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #5a6c7d;
+        }
+
+        /* Highlight Boxes */
+        .problem-box {
+            background: #fff5f5;
+            border-left: 4px solid #e74c3c;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .problem-box h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .solution-box {
+            background: #f0fff4;
+            border-left: 4px solid #27ae60;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .solution-box h3 {
+            color: #27ae60;
+            margin-bottom: 1rem;
+        }
+
+        /* Placeholders & Images */
+        .image-placeholder {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border: 2px dashed #ced4da;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            color: #6c757d;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+        }
+
+        .case-study-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .large-image { height: 400px; }
+        .medium-image { height: 300px; }
+        .small-image { height: 200px; }
+
+        /* Multi-Column Layouts */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+
+        /* Research Insights Grid */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .insight-card {
+            background: #f8f9fc;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .insight-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .insight-text {
+            font-size: 0.95rem;
+            color: #5a6c7d;
+        }
+
+        /* Journey Steps Grid */
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin: 0 auto 1rem auto;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        /* Results Metrics Cards */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+        }
+
+        .result-metric {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Action Buttons & External Links */
+        .project-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Nav */
+        .case-nav {
+            background: #f8f9fc;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .nav-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .two-column { grid-template-columns: 1fr; gap: 2rem; }
+            .project-meta { grid-template-columns: repeat(2, 1fr); }
+            .section-title { font-size: 1.8rem; }
+            .container { padding: 0 15px; }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            transition: height 0.35s ease;   /* smooth resize between images */
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s ease;
+            align-items: flex-start;
+        }
+
+        .carousel-track .slide {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .carousel-track .slide img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(0,0,0,0.5); color: #fff; border: none;
+            padding: 8px 14px; cursor: pointer; border-radius: 50%; font-size: 18px; z-index: 2;
+        }
+        .carousel-btn.prev { left: 12px; }
+        .carousel-btn.next { right: 12px; }
+        .carousel-dots {
+            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 6px; z-index: 2;
+        }
+        .carousel-dots span {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: rgba(255,255,255,0.6); cursor: pointer;
+        }
+        .carousel-dots span.active { background: #fff; }
+        /*single pic*/
+        .media-frame {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            /* no fixed height, no min-height — the frame just wraps the image */
+        }
+
+        .media-frame img {
+            max-width: 100%;   /* never wider than the container */
+            height: auto;      /* keeps true proportions */
+            width: auto;       /* don't stretch to fill */
+            display: block;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navigation -->
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Projects</a>
+            <a href="works.html" class="back-link">← Back to Portfolio</a>
+        </nav>
+    </header>
+ 
+    <!-- Project Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Virtual Pag-IBIG Redesign</h1>
+            <p class="hero-subtitle">Reimagining the Home Development Mutual Fund member portal for Filipino savers, borrowers, and OFWs</p>
+ 
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">UX/UI Designer</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Timeline</div>
+                    <div class="meta-value">4 Weeks, July 2026</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Team</div>
+                    <div class="meta-value">Solo Project</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Tools</div>
+                    <div class="meta-value">Figma, FigJam</div>
+                </div>
+            </div>
+        </div>
+    </section>
+ 
+    <!-- Main Case Study Content -->
+    <main class="content">
+        <div class="container">
+ 
+            <!-- 1. Overview -->
+            <section class="section fade-in">
+                <h2 class="section-title">Project Overview</h2>
+                <p class="text-content">
+                    Virtual Pag-IBIG is the official web and mobile portal of the Home Development Mutual Fund (HDMF), used by millions of Filipino members to manage savings, apply for housing and multi-purpose loans, and track contributions. However, the current product — spanning a 17-screen website and a companion mobile app — suffers from inconsistent layouts, broken error handling, missing account features, and exposed sensitive data that undermine the trust members need to place in a platform holding their retirement and housing savings.
+                </p>
+ 
+                <div class="problem-box">
+                    <h3>The Problem</h3>
+                    <p>Pag-IBIG members — from everyday private-sector employees to OFWs contributing from abroad — struggle to complete core tasks on Virtual Pag-IBIG due to unclear system feedback, duplicated and confusing error states, and a website that offers no way to even view basic account information. Pag-IBIG (HDMF) has ranked among the top complained-about GOCCs in ARTA's recent reporting periods.</p>
+                </div>
+ 
+                <div class="solution-box">
+                    <h3>The Solution</h3>
+                    <p>A complete redesign of both the website and mobile app around one shared design system — fixing structural layout waste, unifying inconsistent error and empty states, closing the account-information gap between web and app, and introducing a new guided flow for reporting contribution posting errors, a documented and previously unaddressed member pain point.</p>
+                </div>
+ 
+                <div class="carousel" data-carousel>
+                    <div class="carousel-track">
+                        <div class="slide"><img src="assets/screenshots-before/web-02-home.png" alt="Before: original Home dashboard"></div>
+                        <div class="slide"><img src="assets/mockups/website/home-web.png" alt="After: redesigned Home dashboard"></div>
+                        <div class="slide"><img src="assets/mockups/mobile/home-mob.png" alt="Redesigned Home dashboard, mobile view"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+                    <button class="carousel-btn next" aria-label="Next image">›</button>
+                    <div class="carousel-dots"></div>
+                </div>
+            </section>
+ 
+            <!-- 2. Research & Discovery -->
+            <section class="section fade-in">
+                <h2 class="section-title">Research &amp; Discovery</h2>
+ 
+                <h3 class="section-subtitle">Heuristic Evaluation</h3>
+                <p class="text-content">
+                    Rather than relying on secondhand reports, I conducted a full audit of the live product — all 17 website screens and 7 app screens — against Nielsen's 10 usability heuristics.
+                </p>
+ 
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-number">18</div>
+                        <div class="insight-text">distinct usability violations identified</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-number">24</div>
+                        <div class="insight-text">screens audited (17 web + 7 app)</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-number">9</div>
+                        <div class="insight-text">screens sharing the single worst offender: 70–85% wasted white space</div>
+                    </div>
+                </div>
+ 
+                <h3 class="section-subtitle">Key User Pain Points</h3>
+                <div class="two-column">
+                    <div>
+                        <h4><strong>Wasted Screen Real Estate</strong></h4>
+                        <p>Nine out of seventeen website screens render their entire content in a small fixed-width block in the top-left corner, leaving the vast majority of the viewport empty — a structural problem, not a one-off.</p>
+ 
+                        <h4 style="margin-top: 1rem;"><strong>Duplicated, Confusing Error Handling</strong></h4>
+                        <p>The MP2 Savings screen fires the same error twice — once as inline text, once as a redundant modal — using unclear phrasing ("Minimal error is being encountered") that gives the member no real understanding of what happened or what to do next.</p>
+                    </div>
+                    <div>
+                        <h4><strong>Inconsistent Empty States</strong></h4>
+                        <p>Housing Loan's "View" page shows a bare "No record found" with no next step, while the identical situation on Multi-Purpose Loan pairs it with a clear "Apply Now" button — the same problem gets two different treatments depending on which page a member lands on.</p>
+ 
+                        <h4 style="margin-top: 1rem;"><strong>Missing Feature Parity &amp; Exposed Data</strong></h4>
+                        <p>The mobile app has an Account Details screen; the website has none. Meanwhile, full MID numbers and mobile numbers appear in plaintext across both platforms, alongside a "last failed login" message shown right after a successful login.</p>
+                    </div>
+                </div>
+ 
+                <div class="media-frame">
+                    <img src="assets/reviews.png"
+                        alt="Before and after comparison of the Home/Dashboard screens">
+                </div>
+            </section>
+ 
+            <!-- 3. Personas -->
+            <section class="section fade-in">
+                <h2 class="section-title">User Personas</h2>
+                <p class="text-content">
+                    Two personas grounded in the confirmed pain points above represent the majority of Virtual Pag-IBIG's user base.
+                </p>
+ 
+                <div class="two-column">
+                    <div class="insight-card">
+                        <h3>Juan Dela Cruz, 31 — The Everyday Saver</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Goal:</strong> Quickly check Regular Savings and MP2 growth; occasionally apply for a Multi-Purpose Loan</p>
+                        <p><strong>Frustrations:</strong> Confused by blank, unlabeled headers; unsettled by seeing "last failed login" right after logging in successfully</p>
+                        <p><strong>Needs:</strong> Clear page titles, reassuring security messaging, obvious read-only vs. editable states</p>
+                        <p><em>"Is this broken, or is this just how it looks?"</em></p>
+                    </div>
+                    <div class="insight-card">
+                        <h3>Arnel Cruz, 42 — The Voluntary Member Abroad</h3>
+                        <p style="margin-top: 0.5rem;"><strong>Goal:</strong> Confirm contributions are posting correctly month to month; monitor housing loan eligibility from abroad</p>
+                        <p><strong>Frustrations:</strong> Had a contribution post to the wrong month with no clear way to fix it; found Contact Channels unhelpful</p>
+                        <p><strong>Needs:</strong> Clear contribution posting confirmation, a real actionable path when something goes wrong</p>
+                        <p><em>"I paid, but the app doesn't clearly tell me if it actually counted."</em></p>
+                    </div>
+                </div>
+ 
+                <div class="media-frame">
+                    <img src="assets/personas.png"
+                        alt="Before and after comparison of the Home/Dashboard screens">
+                </div>
+            </section>
+ 
+            <!-- 4. Design Process -->
+            <section class="section fade-in">
+                <h2 class="section-title">Design Process</h2>
+ 
+                <h3 class="section-subtitle">Information Architecture</h3>
+                <p class="text-content">
+                    I restructured the site around user goals rather than product silos, and closed the web/app parity gap by introducing an Account section to the website for the first time.
+                </p>
+ 
+                <div class="media-frame">
+                    <img src="assets/sitemap.png"
+                        alt="Before and after comparison of the Home/Dashboard screens">
+                </div>
+ 
+                <h3 class="section-subtitle">Storyboard — "Did my contribution actually count?"</h3>
+                <p class="text-content">
+                    To ground the redesign in a real emotional stake rather than just screens, I storyboarded Arnel's scenario: an OFW checking his contribution status during a brief window of phone signal.
+                </p>
+ 
+                <div class="journey-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Context</div>
+                        <div class="step-description">Arnel sends his voluntary contribution through a remittance partner during a break at sea</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Current Pain</div>
+                        <div class="step-description">He opens the app to a blank header and a static table with no clear "posted" confirmation</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Redesigned Dashboard</div>
+                        <div class="step-description">A labeled Home screen shows a plain-language status card: "Your July contribution was posted on July 8"</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Resolution</div>
+                        <div class="step-description">He closes the app reassured, just as he loses signal — a five-second glance replaced ten minutes of doubt</div>
+                    </div>
+                </div>
+ 
+                <div class="media-frame">
+                    <img src="assets/storyboard.png"
+                        alt="Before and after comparison of the Home/Dashboard screens">
+                </div>
+            </section>
+ 
+            <!-- 5. Design Solutions -->
+            <section class="section fade-in">
+                <h2 class="section-title">Design Solutions</h2>
+ 
+                <h3 class="section-subtitle">1. A Design System Built to Fix What the Audit Found</h3>
+                <p class="text-content">
+                    Every component was built to directly resolve a specific, numbered issue from the heuristic evaluation — not decoration for its own sake.
+                </p>
+                <div class="two-column">
+                    <div>
+                        <h4><strong>Primary palette</strong></h4>
+                        <p>#0B2C6B navy (preserves brand recognition) with a distinct Success #2E7D32 / Warning #F9A825 / Error #D32F2F semantic set, all AA-contrast checked. Typography is Inter, full H1–Caption scale.</p>
+                    </div>
+                    <div>
+                        <h4><strong>Core components</strong></h4>
+                        <p>A Page Header component (fixes the 9-screen blank-header problem), a Masked Data Field (MID/mobile shown as ••••••1249, reveal on tap), and a calm Security Status Card replacing alarming login messages.</p>
+                    </div>
+                </div>
+ 
+                <div class="carousel" data-carousel>
+                    <div class="carousel-track">
+                        <div class="slide"><img src="assets/palette.png" alt="Before: original Home dashboard"></div>
+                        <div class="slide"><img src="assets/components-1.png" alt="After: redesigned Home dashboard"></div>
+                        <div class="slide"><img src="assets/components-2.png" alt="Redesigned Home dashboard, mobile view"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+                    <button class="carousel-btn next" aria-label="Next image">›</button>
+                    <div class="carousel-dots"></div>
+                </div>
+ 
+                <h3 class="section-subtitle">2. Unified Empty &amp; Error States</h3>
+                <p class="text-content">
+                    Every "no record" situation across Housing, Multi-Purpose, and Calamity Loans now uses one consistent component: a plain-language message paired with a single, clear action button. The MP2 Savings duplicate-error bug is resolved with one clear, dismissible message instead of two.
+                </p>
+ 
+                <div class="carousel" data-carousel>
+                    <div class="carousel-track">
+                        <div class="slide"><img src="assets/housing-loan.png" alt="Before: original Home dashboard"></div>
+                        <div class="slide"><img src="assets/mpl.png" alt="After: redesigned Home dashboard"></div>
+                        <div class="slide"><img src="assets/calamity-loan.png" alt="Redesigned Home dashboard, mobile view"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+                    <button class="carousel-btn next" aria-label="Next image">›</button>
+                    <div class="carousel-dots"></div>
+                </div>
+ 
+                <h3 class="section-subtitle">3. A Website Account Page — Closing the Parity Gap</h3>
+                <p class="text-content">
+                    The website gains a proper Account section for the first time, matching what the app already offered — masked ID display, contact info, and a reframed security summary.
+                </p>
+ 
+                <div class="media-frame">
+                    <img src="assets/account.png"
+                        alt="Before and after comparison of the Home/Dashboard screens">
+                </div>
+ 
+                <h3 class="section-subtitle">4. "Report a Posting Issue" — A New Flow, Not Just a Fix</h3>
+                <p class="text-content">
+                    Rather than only repairing what was visibly broken, this flow was designed from scratch to answer a real, documented, previously unaddressed need: a simple, guided way for members to flag a contribution that didn't post correctly, replacing the current dead-end "call this number" pattern.
+                </p>
+ 
+                <div class="carousel" data-carousel>
+                    <div class="carousel-track">
+                        <div class="slide"><img src="assets/report-1.png" alt="Before: original Home dashboard"></div>
+                        <div class="slide"><img src="assets/report-2.png" alt="After: redesigned Home dashboard"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+                    <button class="carousel-btn next" aria-label="Next image">›</button>
+                    <div class="carousel-dots"></div>
+                </div>
+            </section>
+ 
+            <!-- 6. Prototyping & Testing -->
+            <section class="section fade-in">
+                <h2 class="section-title">Prototyping &amp; Testing</h2>
+ 
+                <h3 class="section-subtitle">Interactive Prototype</h3>
+                <p class="text-content">
+                    Two clickable Figma prototypes were built — one for the website (desktop frames, top-nav navigation) and one for the app (mobile frames, tab-bar navigation) — covering Login, Home/Dashboard, Savings, Loans, Payments, Account, and Help/Report an Issue.
+                </p>
+ 
+                <div class="carousel" data-carousel>
+                    <div class="carousel-track">
+                        <div class="slide"><img src="assets/mockups/website/home-web.png" alt="After: redesigned Home dashboard"></div>
+                        <div class="slide"><img src="assets/mockups/mobile/home-mob.png" alt="Redesigned Home dashboard, mobile view"></div>
+                    </div>
+                    <button class="carousel-btn prev" aria-label="Previous image">‹</button>
+                    <button class="carousel-btn next" aria-label="Next image">›</button>
+                    <div class="carousel-dots"></div>
+                </div>
+ 
+                <h3 class="section-subtitle">Usability Testing Plan</h3>
+                <p class="text-content">
+                    Tasks planned for participant testing:
+                </p>
+                <div class="text-content">
+                    <ul style="margin-left: 2rem;">
+                        <li>Check total savings and confirm whether a contribution posted this month</li>
+                        <li>Find out if you're eligible to apply for a housing loan</li>
+                        <li>Report a contribution that seems to have an issue</li>
+                        <li>Check your registered mobile number in Account settings</li>
+                    </ul>
+                </div>
+                <p class="text-content">
+                    <em>Note: This test has not yet been run with real participants. Rather than presenting invented numbers, results will be added here once testing is complete.</em>
+                </p>
+            </section>
+ 
+            <!-- 7. Results & Impact -->
+            <section class="section fade-in">
+                <h2 class="section-title">Results &amp; Impact</h2>
+ 
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-metric">18 / 18</div>
+                        <div class="result-description">Heuristic violations from the original audit directly addressed</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-metric">1 new</div>
+                        <div class="result-description">Flow introduced (Report a Posting Issue) for a previously unsolved member need</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-metric">1 gap</div>
+                        <div class="result-description">Platform parity closed — Account info now on web, matching the app</div>
+                    </div>
+                </div>
+ 
+                <h3 class="section-subtitle">Key Improvements</h3>
+                <div class="two-column">
+                    <div>
+                        <h4><strong>User Experience</strong></h4>
+                        <p>Consistent empty/error states and a real page header on every screen remove the ambiguity that made the original product feel unfinished or broken.</p>
+ 
+                        <h4 style="margin-top: 1rem;"><strong>Trust &amp; Security</strong></h4>
+                        <p>Masked sensitive data and reframed, calm security messaging replace alarming, plaintext-exposed information — directly addressing the biggest source of member anxiety found in the audit.</p>
+                    </div>
+                    <div>
+                        <h4><strong>Feature Completeness</strong></h4>
+                        <p>The new website Account page and the "Report a Posting Issue" flow close two real gaps rather than just reskinning what already existed.</p>
+ 
+                        <h4 style="margin-top: 1rem;"><strong>Consistency</strong></h4>
+                        <p>One shared design system across web and app means members get the same mental model regardless of which platform they're using.</p>
+                    </div>
+                </div>
+            </section>
+ 
+            <!-- 8. Learnings, Next Steps, & Action Links -->
+            <section class="section fade-in">
+                <h2 class="section-title">Key Learnings &amp; Next Steps</h2>
+ 
+                <h3 class="section-subtitle">What I Learned</h3>
+                <p class="text-content">
+                    Working from real screenshots rather than secondhand reports made the difference between guessing at problems and finding provable ones — the 18-issue audit became the backbone of every design decision that followed. It also reinforced that redesigns for financial/government platforms carry real stakes: an unclear error message here isn't just an annoyance, it's a member wondering if their retirement savings are safe.
+                </p>
+ 
+                <h3 class="section-subtitle">Next Steps</h3>
+                <div class="text-content">
+                    <p><strong>Phase 2:</strong></p>
+                    <ul style="margin-left: 2rem; margin-top: 1rem;">
+                        <li>Usability-test the "Report a Posting Issue" flow specifically with OFW members</li>
+                        <li>A/B test the masked-MID reveal pattern to confirm it doesn't slow down legitimate account checks</li>
+                        <li>Extend the unified empty/error-state component to any remaining screens not covered in this first pass</li>
+                        <li>Explore a notification system for contribution posting confirmations</li>
+                    </ul>
+                </div>
+ 
+                <!-- Action Links for GitHub and Figma -->
+                <div class="project-links">
+                    <a href="https://github.com/xtuna/UI-UX_Projects.git" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View Repository
+                    </a>
+                    <a href="https://www.figma.com/proto/wIVFDs7jI4js999xdXnrfL/Virtual-Pag-IBIG-Redesign?node-id=82-1563&t=7LXYQ8kIkVAbdMOB-1&scaling=contain&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=82%3A1563&show-proto-sidebar=1" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-figma"></i> View Figma Prototype
+                    </a>
+                    <a href="https://www.figma.com/board/4ZIinFCeaMUNKeqklLuwfl/Pag-IBIG-Planning?node-id=0-1&t=Jw7446dbqe478y8a-1" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-figma"></i> View Figjam
+                    </a>
+                </div>
+            </section>
+ 
+        </div>
+    </main>
+ 
+    <!-- Bottom Case Navigation -->
+    <section class="case-nav">
+        <div class="container">
+            <a href="works.html" class="nav-button">← All Projects</a>
+            <a href="project2.html" class="nav-button">Next Project →</a>
+        </div>
+    </section>
+ 
+    <!-- Scroll Observer Script -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+ 
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+ 
+        document.querySelectorAll('.fade-in').forEach(section => {
+            observer.observe(section);
+        });
+ 
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        document.querySelectorAll('[data-carousel]').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = [...track.children];
+            const dotsWrap = carousel.querySelector('.carousel-dots');
+            let index = 0;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+            });
+
+            function resizeToSlide() {
+                const img = slides[index].querySelector('img');
+                const setHeight = () => { carousel.style.height = slides[index].offsetHeight + 'px'; };
+                if (img.complete) setHeight();
+                else img.addEventListener('load', setHeight, { once: true });
+            }
+
+            function goTo(i) {
+                index = (i + slides.length) % slides.length;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dotsWrap.childNodes.forEach((d, di) => d.classList.toggle('active', di === index));
+                resizeToSlide();
+            }
+
+            carousel.querySelector('.prev').addEventListener('click', () => goTo(index - 1));
+            carousel.querySelector('.next').addEventListener('click', () => goTo(index + 1));
+
+            resizeToSlide(); // set initial height on load
+        });
+    </script>
+</body>
+
+</html>

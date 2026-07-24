@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Cristina's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="about">
+    <nav class="navbar">
+        <div class="logo">
+            <div class="profile-picture">
+                <img src="xtina.JPG" alt="Cristina Velasco headshot">
+            </div>
+        </div>
+        <div class="nav-links">
+            <span class="nav-item"><a href="index.html">Home</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="works.html">Works</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="about.html">About</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="achievements.html" class="active">Achievements</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="contact.html">Contact</a></span>
+        </div>
+        <!-- <a href="https://www.dropbox.com/scl/fi/fl4iiu221aqe1qotkud0f/Velasco-Ma.-Cristina-Sajuyan_Resume.pdf?rlkey=7b1qg4cxi3xn4jj9p86d2en36&st=u09tqu9e&dl=0" class="download-btn" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </a> -->
+        <button class="download-btn" onclick="forceDownload()">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </button>
+    </nav>
+
+    <section class="achievements-section">
+
+        <div class="tab-navigation">
+            <div class="tab-item active" onclick="switchTab('certifications', this)">
+                <i class="fas fa-certificate"></i> Certifications
+            </div>
+            <div class="tab-item inactive" onclick="switchTab('honors', this)">
+                <i class="fas fa-trophy"></i> Honors & Awards
+            </div>
+            <!-- <div class="tab-item inactive" onclick="switchTab('courses', this)">
+                <i class="fas fa-graduation-cap"></i> Professional Courses
+            </div> -->
+        </div>
+
+        <!-- Certifications Section -->
+        <div id="certifications" class="content-section active">
+            <div class="achievements-grid">
+                <!-- Sample Certification Cards - Replace with your actual certifications -->
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="achievement-title">HTML, CSS, and Javascript for Web Developers</h3>
+                    <p class="achievement-organization">Coursera Certificate</p>
+                    <p class="achievement-date">Issued: November 20, 2023</p>
+                    <p class="achievement-description">
+                        Introductory course on HTML5 covering document structure, semantic tags, and essential elements, with hands-on guidance for setting up a development environment.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">Web Development</span>
+                        <span class="badge">Front-End Web Development</span>
+                        <span class="badge">Responsive Web Design</span>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/verify/QJB779T5DVP7?utm_source=ln&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="achievement-title">Digital Skills: User Experience</h3>
+                    <p class="achievement-organization">Accenture</p>
+                    <p class="achievement-date">Issued: March 3, 2025</p>
+                    <p class="achievement-description">
+                        This course described what UX is and the impact it can have on a business. It explored the foundations of UX design and the design process: design, develop and release. Information architecture was explained in addition to the different UX techniques
+                        you can use to test and develop your designs, so that they’re ready to release to the market.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">UX Design</span>
+                        <!-- <span class="badge">Azure</span>
+                        <span class="badge">Microsoft</span> -->
+                    </div>
+                    <a href="https://www.futurelearn.com/certificates/7w36r7u" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+
+                <!-- Add more certification cards as needed -->
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3 class="achievement-title">Tech Advancement Talks</h3>
+                    <p class="achievement-organization">PUP The Programmers' Guild Flagship Event</p>
+                    <p class="achievement-date">Issued: September 7-16, 2023</p>
+                    <p class="achievement-description">
+                        A case study competition empowering students to solve real-world tech career challenges, fostering innovation, collaboration, and growth in the dynamic field of technology.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">Career</span>
+                        <!-- <span class="badge">UI Design</span>
+                        <span class="badge">Design Systems</span> -->
+                    </div>
+                    <a href="https://drive.google.com/file/d/197L1wM5YUheB9AOjqUmHNhscyjZXQ-TM/view?usp=sharing" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Honors & Awards Section -->
+        <div id="honors" class="content-section">
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3 class="achievement-title">Magna Cum Laude</h3>
+                    <p class="achievement-organization">Polytechnic University of the Philippines</p>
+                    <p class="achievement-date">Academic Year 2021-2025</p>
+                    <p class="achievement-description">
+                        Consistent President's List recipient in recognition of exemplary academic achievement in the University.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">Academic Excellence</span>
+                        <!-- <span class="badge">High GPA</span> -->
+                    </div>
+                    <a href="https://drive.google.com/file/d/103QN6wbx9tA_zx5C13MshvKhzeRd-EfW/view?usp=sharing" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="achievement-title">3rd Place in Webpage Design Contest</h3>
+                    <p class="achievement-organization">Nutrition Month Celebration</p>
+                    <p class="achievement-date">July 30, 2018</p>
+                    <p class="achievement-description">
+                        Third place award for webpage design in the nutrition month celebration.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">Third Place</span>
+                        <!-- <span class="badge">Innovation</span> -->
+                        <span class="badge">Webpage Design Competition</span>
+                    </div>
+                    <a href="https://drive.google.com/file/d/1YcZd0oW9ASTikVcglvO4cFLfqC-shDsF/view?usp=sharing" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+
+                <!-- Add more honors as needed -->
+            </div>
+        </div>
+
+        <!-- Professional Courses Section -->
+        <!-- <div id="courses" class="content-section">
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="achievement-title">Full Stack Web Development</h3>
+                    <p class="achievement-organization">freeCodeCamp</p>
+                    <p class="achievement-date">Completed: February 2024</p>
+                    <p class="achievement-description">
+                        Comprehensive bootcamp covering HTML, CSS, JavaScript, React, Node.js, and database management.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">React</span>
+                        <span class="badge">Node.js</span>
+                    </div>
+                    <a href="#" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3 class="achievement-title">Database Design and Management</h3>
+                    <p class="achievement-organization">edX</p>
+                    <p class="achievement-date">Completed: January 2024</p>
+                    <p class="achievement-description">
+                        Advanced course in database design, SQL programming, and database administration principles.
+                    </p>
+                    <div class="achievement-badges">
+                        <span class="badge">SQL</span>
+                        <span class="badge">Database Design</span>
+                        <span class="badge">MySQL</span>
+                    </div>
+                    <a href="#" class="achievement-link">
+                        <i class="fas fa-external-link-alt"></i> View Certificate
+                    </a>
+                </div>
+            </div>
+        </div> -->
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <title>Cristina's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="index">
+    <div class="container">
+        <div class="background"></div>
+        <div class="name">CRISTINA</div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <div class="profile-picture">
+                <img src="assets/xtina.JPG" alt="Cristina Velasco headshot">
+            </div>
+        </div>
+        <div class="nav-links">
+            <span class="nav-item"><a href="index.html" class="active">Home</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="works.html">Works</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="about.html">About</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="achievements.html">Achievements</a></span>
+            <span class="separator">/</span>
+            <span class="nav-item"><a href="contact.html">Contact</a></span>
+        </div>
+        <!-- <button class="download-btn">
+            <img src="pdf-icon.png" alt="PDF" class="pdf-icon"> DOWNLOAD CV
+        </button> -->
+        <!-- <a href="https://www.dropbox.com/scl/fi/fl4iiu221aqe1qotkud0f/Velasco-Ma.-Cristina-Sajuyan_Resume.pdf?rlkey=7b1qg4cxi3xn4jj9p86d2en36&st=u09tqu9e&dl=1" class="download-btn" download="Cristina_Velasco_Resume.pdf">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </a> -->
+        <button class="download-btn" onclick="forceDownload()">
+            <i class="fas fa-file-pdf" style="font-size: 32px; color: white;"></i>
+            <span>DOWNLOAD CV</span>
+        </button>
+    </nav>
+
+    <section id="intro" class="intro-section">
+        <div class="group">
+            <div class="left-side">
+                <h1 class="intro-title">Hi, I’m Cristina</h1>
+                <div class="content">
+                    <div class="qr-container">
+                        <img src="assets/qr-code.png" alt="QR Code">
+                    </div>
+                    <div class="intro-text">
+                        <p class="subtitle">UI/UX DESIGNER</p>
+                        <p class="description">
+                            A UI/UX designer enthusiast with knowledge in front-end development, wireframing, and system analysis. I thrive in designing intuitive user experiences and translating ideas into functional interfaces.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-side">
+                <div class="maincontainer" onclick="flipImage()">
+                    <div class="thecard" id="flipCard">
+                        <div class="thefront">
+                            <img src="assets/xtina.JPG" alt="Pixelated Cristina">
+                        </div>
+                        <div class="theback">
+                            <img src="assets/Cristina.JPG" alt="Original Cristina">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>
