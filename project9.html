@@ -138,6 +138,7 @@
     /* Gallery — wide screens, so two columns instead of four */
     .ui-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 40px 26px; }
     @media (max-width: 520px) { .ui-gallery { grid-template-columns: 1fr; } }
+    .ui-gallery-narrow { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); align-items: start; }
     .ui-gallery-item { display: flex; flex-direction: column; gap: 12px; }
     .ui-gallery-item .media-frame { transition: transform 0.2s ease; }
     .ui-gallery-item:hover .media-frame { transform: translateY(-3px); }
@@ -330,24 +331,64 @@
                 <h3 class="ui-gallery-group">Game UI</h3>
                 <div class="ui-gallery">
                     <div class="ui-gallery-item">
-                        <div class="media-frame"><img src="assets/cozy-game-screens-proj9.png" alt="Kiosk HUD, crafting grid, ingredient shop and basket screens"></div>
-                        <div class="ui-gallery-caption">Kiosk HUD, Crafting, Shop &amp; Basket</div>
+                        <div class="media-frame"><img src="assets/cozy-hud-proj9.png" alt="Kiosk HUD with profit goal, coins, order ticket and movement controls"></div>
+                        <div class="ui-gallery-caption">Kiosk HUD</div>
                     </div>
                     <div class="ui-gallery-item">
-                        <div class="media-frame"><img src="assets/cozy-game-items-proj9.png" alt="Items catalog showing meals, item preview and detail view"></div>
-                        <div class="ui-gallery-caption">Items Catalog: Preview &amp; Details</div>
+                        <div class="media-frame"><img src="assets/cozy-crafting-proj9.png" alt="Crafting grid with cook and clear buttons and order list"></div>
+                        <div class="ui-gallery-caption">Crafting Grid</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-shop-proj9.png" alt="Ingredient shop with available items"></div>
+                        <div class="ui-gallery-caption">Ingredient Shop</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-basket-proj9.png" alt="Shop basket with quantity controls and total coins"></div>
+                        <div class="ui-gallery-caption">Basket &amp; Checkout</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-items-preview-proj9.png" alt="Items catalog with meal grid and item preview"></div>
+                        <div class="ui-gallery-caption">Items Catalog: Preview</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-items-details-proj9.png" alt="Items catalog with description, price and ingredients"></div>
+                        <div class="ui-gallery-caption">Items Catalog: Details</div>
                     </div>
                 </div>
 
                 <h3 class="ui-gallery-group">Website</h3>
-                <div class="ui-gallery">
+                <div class="ui-gallery ui-gallery-narrow">
                     <div class="ui-gallery-item">
-                        <div class="media-frame"><img src="assets/cozy-website-home-proj9.png" alt="Cozy Cuisine website: home, about, gallery, news, and support pages"></div>
-                        <div class="ui-gallery-caption">Home, About, Gallery, News &amp; Support</div>
+                        <div class="media-frame"><img src="assets/cozy-home-proj9.png" alt="Website home page with hero, how to play and game items"></div>
+                        <div class="ui-gallery-caption">Home</div>
                     </div>
                     <div class="ui-gallery-item">
-                        <div class="media-frame"><img src="assets/cozy-website-wiki-proj9.png" alt="Cozy Cuisine website: credits, wiki, and download pages"></div>
-                        <div class="ui-gallery-caption">Credits, Wiki &amp; Download</div>
+                        <div class="media-frame"><img src="assets/cozy-about-proj9.png" alt="Website about page with community and gameplay sections"></div>
+                        <div class="ui-gallery-caption">About</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-media-proj9.png" alt="Website media page with videos, images and characters"></div>
+                        <div class="ui-gallery-caption">Media</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-news-proj9.png" alt="Website news page with featured updates and patch notes"></div>
+                        <div class="ui-gallery-caption">News</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-support-proj9.png" alt="Website support page with FAQs and bug report form"></div>
+                        <div class="ui-gallery-caption">Support</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-credits-proj9.png" alt="Website credits page"></div>
+                        <div class="ui-gallery-caption">Credits</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-wiki-proj9.png" alt="Website wiki page with tutorials, game guides and tips"></div>
+                        <div class="ui-gallery-caption">Wiki</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-download-proj9.png" alt="Website download page with reviews"></div>
+                        <div class="ui-gallery-caption">Download &amp; Reviews</div>
                     </div>
                 </div>
             </section>
