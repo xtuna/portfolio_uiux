@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cozy Cuisine — Game UI Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+    :root {
+        --brown-deep: #603F26;
+        --brown: #6C4E31;
+        --orange: #D1763C;
+        --peach: #FFDBB5;
+        --beige: #FFEAC5;
+        --text-primary: #2B1D10;
+        --text-secondary: #6B5A49;
+        --surface: #FFF6E6;
+        --border: #EBD7B5;
+        --radius: 12px;
+        --space-lg: 88px;
+        --space-md: 56px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: 'Inter', -apple-system, "Segoe UI", Roboto, sans-serif;
+        color: var(--text-primary);
+        background: #fff;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+    /* Header */
+    header {
+        border-bottom: 1px solid var(--border);
+        padding: 18px 0;
+        position: sticky; top: 0; background: rgba(255,255,255,0.9); backdrop-filter: blur(6px);
+        z-index: 10;
+    }
+    header nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 700; font-size: 1.05rem; letter-spacing: -0.01em; }
+    .back-link { font-size: 0.88rem; color: var(--text-secondary); transition: color 0.15s; }
+    .back-link:hover { color: var(--orange); }
+
+    /* Hero */
+    .hero {
+        background: linear-gradient(150deg, var(--brown-deep) 0%, var(--brown) 100%);
+        color: #fff;
+        padding: 72px 0 60px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::after {
+        content: "";
+        position: absolute; inset: 0;
+        background: radial-gradient(600px 300px at 85% 0%, rgba(209,118,60,0.28), transparent 70%);
+        pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-tag {
+        display: inline-block;
+        font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+        color: var(--peach);
+        border: 1px solid rgba(255,219,181,0.45);
+        padding: 5px 12px; border-radius: 999px;
+        margin-bottom: 18px;
+    }
+    .hero h1 {
+        font-family: 'Press Start 2P', 'Inter', monospace;
+        font-size: 1.9rem; font-weight: 400; margin-bottom: 18px; line-height: 1.45;
+        max-width: 760px; color: var(--beige);
+    }
+    .hero-subtitle { font-size: 1.02rem; color: #F2DFC0; margin-bottom: 36px; max-width: 620px; font-weight: 400; }
+    .project-meta { display: flex; flex-wrap: wrap; gap: 36px; border-top: 1px solid rgba(255,255,255,0.18); padding-top: 24px; }
+    .meta-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; color: #D9B98F; margin-bottom: 5px; font-weight: 600; }
+    .meta-value { font-size: 0.95rem; font-weight: 600; }
+
+    /* Content */
+    main.content { padding: var(--space-md) 0 40px; }
+    .section { margin-bottom: var(--space-lg); }
+    .section:last-of-type { margin-bottom: var(--space-md); }
+    .section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.01em; }
+    .text-content { font-size: 0.98rem; color: var(--text-secondary); max-width: 680px; }
+    .text-content + .text-content { margin-top: 14px; }
+
+    .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 4px; }
+    .two-column h4 { font-size: 0.92rem; margin-bottom: 6px; font-weight: 700; }
+    .two-column p { font-size: 0.9rem; color: var(--text-secondary); }
+    @media (max-width: 700px) { .two-column { grid-template-columns: 1fr; gap: 24px; } }
+
+    /* Color palette swatches */
+    .swatch-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
+    .swatch { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 500; }
+    .swatch-chip { width: 44px; height: 44px; border-radius: 10px; display: block; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .swatch small { display: block; font-size: 0.7rem; color: #9C8A76; font-weight: 400; }
+
+    /* Tag pills */
+    .style-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .style-tag {
+        font-size: 0.78rem; font-weight: 500; color: var(--brown-deep);
+        background: var(--beige); border: 1px solid var(--border);
+        padding: 5px 12px; border-radius: 999px;
+    }
+
+    /* Typography specimen */
+    .type-list { list-style: none; margin-top: 10px; display: grid; gap: 8px; }
+    .type-list li { font-size: 0.88rem; color: var(--text-secondary); }
+    .type-list strong { color: var(--text-primary); font-weight: 600; }
+
+    /* Image frame */
+    .media-frame { display: flex; justify-content: center; width: 100%; }
+    .media-frame img {
+        max-width: 100%; width: auto; height: auto; display: block;
+        border-radius: var(--radius);
+        box-shadow: 0 4px 20px rgba(96,63,38,0.14);
+    }
+    .media-frame.placeholder {
+        width: 100%; aspect-ratio: 4 / 3;
+        background: var(--surface);
+        border: 1.5px dashed #D8C3A0;
+        border-radius: var(--radius);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .media-frame.featured.placeholder { aspect-ratio: 16 / 7; }
+    .placeholder-inner { text-align: center; color: #A89477; padding: 20px; }
+    .placeholder-inner i { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .placeholder-inner span { font-size: 0.82rem; font-weight: 500; }
+
+    .ui-full-width { margin-bottom: 4px; }
+    .figure-caption { font-size: 0.86rem; color: var(--text-secondary); text-align: center; font-weight: 500; margin-top: 12px; }
+
+    /* Gallery — wide screens, so two columns instead of four */
+    .ui-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 40px 26px; }
+    @media (max-width: 520px) { .ui-gallery { grid-template-columns: 1fr; } }
+    .ui-gallery-item { display: flex; flex-direction: column; gap: 12px; }
+    .ui-gallery-item .media-frame { transition: transform 0.2s ease; }
+    .ui-gallery-item:hover .media-frame { transform: translateY(-3px); }
+    .ui-gallery-caption { font-size: 0.86rem; color: var(--text-secondary); text-align: center; font-weight: 500; }
+    .ui-gallery-group { font-size: 0.98rem; font-weight: 700; margin: 0 0 18px; }
+    .ui-gallery-group + .ui-gallery { margin-bottom: 52px; }
+
+
+    .fit-list { display: grid; gap: 22px; margin-top: 8px; }
+    .fit-item { display: grid; grid-template-columns: 220px 1fr; gap: 28px; padding-top: 22px; border-top: 1px solid var(--border); }
+    .fit-item h4 { font-size: 0.95rem; font-weight: 700; }
+    .fit-item p { font-size: 0.9rem; color: var(--text-secondary); }
+    @media (max-width: 700px) { .fit-item { grid-template-columns: 1fr; gap: 6px; } }
+
+    /* Links */
+    .project-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .project-link {
+        display: inline-flex; align-items: center; gap: 9px;
+        padding: 12px 22px; border-radius: 9px;
+        background: var(--brown-deep); color: #fff; font-size: 0.9rem; font-weight: 600;
+        transition: background 0.15s, transform 0.15s;
+    }
+    .project-link:hover { background: var(--orange); transform: translateY(-1px); }
+    .project-link.secondary { background: transparent; color: var(--brown-deep); border: 1.5px solid var(--brown-deep); }
+    .project-link.secondary:hover { background: var(--beige); color: var(--brown-deep); }
+
+    /* Footer nav */
+    .case-nav { border-top: 1px solid var(--border); padding: 26px 0; background: var(--surface); }
+    .case-nav .container { display: flex; justify-content: space-between; }
+    .nav-button { font-size: 0.88rem; font-weight: 600; color: var(--brown-deep); transition: opacity 0.15s; }
+    .nav-button:hover { opacity: 0.7; }
+
+    @media (max-width: 600px) {
+        .hero h1 { font-size: 1.15rem; }
+        .project-meta { gap: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        * { transition: none !important; }
+    }
+</style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Projects</a>
+            <a href="works.html" class="back-link">← Back to Portfolio</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <span class="hero-tag">Game UI Design</span>
+            <h1>Cozy Cuisine</h1>
+            <p class="hero-subtitle">Full game UI and companion website for a pixel-art food kiosk game — from in-game menus, shops, and crafting screens to a style guide, component behavior specs, and a sliced asset library.</p>
+
+            <div class="project-meta">
+                <div class="meta-item">
+                    <div class="meta-label">Role</div>
+                    <div class="meta-value">Game UI Designer</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Type</div>
+                    <div class="meta-value">Desktop Game UI &amp; Website</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Tools</div>
+                    <div class="meta-value">Figma</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Year</div>
+                    <div class="meta-value">2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="content">
+        <div class="container">
+
+            <section class="section">
+                <h2 class="section-title">About This Piece</h2>
+                <p class="text-content">
+                    Cozy Cuisine is a pixel-art game where the player runs a food kiosk: buying ingredients, crafting dishes, and serving customers. I designed the game's interface end to end, including the main HUD, shop and basket screens, the crafting grid, and an item catalog, along with the game's marketing website.
+                </p>
+                <p class="text-content">
+                    The goal was a warm, inviting interface that stays readable at pixel scale and keeps every screen consistent, so the player can focus on cooking and serving instead of figuring out the menus.
+                </p>
+                <div class="style-tags">
+                    <span class="style-tag">Game UI</span>
+                    <span class="style-tag">Pixel Art</span>
+                    <span class="style-tag">Desktop Game</span>
+                    <span class="style-tag">Website</span>
+                    <span class="style-tag">Design System</span>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="ui-full-width">
+                    <div class="media-frame featured">
+                        <img src="assets/cozy-game-screens-proj9.png" alt="Cozy Cuisine in-game screens: kiosk HUD, crafting grid, ingredient shop and basket">
+                    </div>
+                    <p class="figure-caption">Core gameplay flow: kiosk HUD, crafting, ingredient shop, and basket</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Responsibilities in This Project</h2>
+                <div class="fit-list">
+                    <div class="fit-item">
+                        <h4>Overall game UI</h4>
+                        <p>Designed the main interface (kiosk HUD with profit goal, coins, order tickets, and on-screen movement controls), sub-interfaces (items, shop, basket), and functional screens (crafting grid with cook and clear actions), plus the interaction flow that connects them.</p>
+                    </div>
+                    <div class="fit-item">
+                        <h4>Clear, consistent style</h4>
+                        <p>Built interfaces and icons from the product and art direction so menus, tabs, panels, and food icons all read as one pixel-art world: same borders, same containers, same button states.</p>
+                    </div>
+                    <div class="fit-item">
+                        <h4>Specs and sliced assets</h4>
+                        <p>Delivered a UI Style Guide, a Component Behavior Guide, and an organized asset library with naming conventions, three-state buttons, sprite sheets, and frame data for animated elements.</p>
+                    </div>
+                    <div class="fit-item">
+                        <h4>Collaboration with the team</h4>
+                        <p>Worked alongside the project manager, game, front-end, back-end, and QA teammates so the designs could be implemented directly in the game and on the website.</p>
+                    </div>
+                    <div class="fit-item">
+                        <h4>Post-launch refinement</h4>
+                        <p>Documented hover, pop-up, transition, and loading behaviors so interactions can be tuned after release without redesigning screens.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Skills Showcased</h2>
+                <div class="two-column">
+                    <div>
+                        <h4>Design Tools</h4>
+                        <p>Interface layouts, components, and prototypes built in Figma, with game-ready assets exported as sliced PNGs, sprite sheets, and GIFs.</p>
+                    </div>
+                    <div>
+                        <h4>Graphic &amp; Icon Design</h4>
+                        <p>Custom pixel icons, food sprites, buttons, panels, and tabs, designed with consistent borders, spacing, and outlined and filled icon variants.</p>
+                    </div>
+                    <div>
+                        <h4>Layout &amp; Color Theory</h4>
+                        <p>A limited five-color palette with clear hierarchy, so containers, text, and active states are easy to tell apart on every screen.</p>
+                    </div>
+                    <div>
+                        <h4>Interaction Design &amp; User Flows</h4>
+                        <p>A logical loop the player can follow without instructions: take an order, buy ingredients, craft the dish, and serve the customer.</p>
+                    </div>
+                    <div>
+                        <h4>Adapting to an Art Style</h4>
+                        <p>Interfaces and icons built to match the game's pixel-art look, from the in-game menus to the website.</p>
+                    </div>
+                    <div>
+                        <h4>Motion Design</h4>
+                        <p>Animated UI elements including a swinging loading sign, a progress bar that fills with an ease-in curve, an idle cat sprite, and scale-in pop-ups.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Foundations</h2>
+                <div class="two-column" style="margin-bottom: 32px;">
+                    <div>
+                        <h4>Color Palette</h4>
+                        <div class="swatch-row">
+                            <div class="swatch"><span class="swatch-chip" style="background:#FFEAC5"></span>Light Beige<small>#FFEAC5</small></div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#FFDBB5"></span>Peach Cream<small>#FFDBB5</small></div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#6C4E31"></span>Dark Brown<small>#6C4E31</small></div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#603F26"></span>Deep Brown<small>#603F26</small></div>
+                            <div class="swatch"><span class="swatch-chip" style="background:#D1763C"></span>Accent Orange<small>#D1763C</small></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4>Type Scale</h4>
+                        <ul class="type-list">
+                            <li><strong>Press Start 2P</strong> for titles and buttons (16–20px, uppercase)</li>
+                            <li><strong>ByteBounce</strong> for in-game labels (12–14px)</li>
+                            <li><strong>Pixel Arial 11pt</strong> for tooltips and subtext (10–12px)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Screens</h2>
+
+                <h3 class="ui-gallery-group">Game UI</h3>
+                <div class="ui-gallery">
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-game-screens-proj9.png" alt="Kiosk HUD, crafting grid, ingredient shop and basket screens"></div>
+                        <div class="ui-gallery-caption">Kiosk HUD, Crafting, Shop &amp; Basket</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-game-items-proj9.png" alt="Items catalog showing meals, item preview and detail view"></div>
+                        <div class="ui-gallery-caption">Items Catalog: Preview &amp; Details</div>
+                    </div>
+                </div>
+
+                <h3 class="ui-gallery-group">Website</h3>
+                <div class="ui-gallery">
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-website-home-proj9.png" alt="Cozy Cuisine website: home, about, gallery, news, and support pages"></div>
+                        <div class="ui-gallery-caption">Home, About, Gallery, News &amp; Support</div>
+                    </div>
+                    <div class="ui-gallery-item">
+                        <div class="media-frame"><img src="assets/cozy-website-wiki-proj9.png" alt="Cozy Cuisine website: credits, wiki, and download pages"></div>
+                        <div class="ui-gallery-caption">Credits, Wiki &amp; Download</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Design Notes</h2>
+                <div class="two-column">
+                    <div>
+                        <h4>Color &amp; Typography</h4>
+                        <p>A warm brown and cream palette keeps the interface cozy and food-themed, while a single orange accent marks active states and key actions. Text meets a 4.5:1 contrast ratio, and icon-only buttons get tooltips so nothing relies on color or symbols alone.</p>
+                    </div>
+                    <div>
+                        <h4>Style Direction</h4>
+                        <p>Chunky bordered panels, tabbed menus, and pixel icons echo the game's art, so the UI feels like part of the world. Every button ships in normal, hover, and pressed states, pop-ups scale in over 200ms, and scene changes fade for a calm, steady pace.</p>
+                    </div>
+                    <div>
+                        <h4>Handoff &amp; Motion</h4>
+                        <p>Assets follow a clear naming convention (<code>btn_[name]_idle.png</code>, <code>icon_[name].png</code>, <code>popup_[name].png</code>) and animated elements come as sprite sheets with JSON frame data, including the loading screen's swinging sign, progress bar, and idle cat.</p>
+                    </div>
+                    <div>
+                        <h4>Reading the Game at a Glance</h4>
+                        <p>The kiosk HUD keeps profit goal, coins, and the current order visible without covering the play area. Shop and crafting screens use large, consistent slots so ingredients and dishes can be recognized quickly.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="project-links">
+                    <a href="https://github.com/xtuna/Assets" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View Asset Library
+                    </a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <section class="case-nav">
+        <div class="container">
+            <a href="works.html" class="nav-button">← All Projects</a>
+            <a href="#top" class="nav-button" onclick="window.scrollTo({top:0});return false;">Back to Top ↑</a>
+        </div>
+    </section>
+
+    <script>
+        // Graceful fallback: if an image is missing, show a clean placeholder instead of a broken icon.
+        document.querySelectorAll('.media-frame img').forEach(function (img) {
+            img.addEventListener('error', function () {
+                var frame = img.closest('.media-frame');
+                var label = img.getAttribute('alt') || 'Image';
+                frame.classList.add('placeholder');
+                frame.innerHTML = '<div class="placeholder-inner"><i class="fa-regular fa-image"></i><span>' + label + '</span></div>';
+            });
+        });
+    </script>
+</body>
+</html>
